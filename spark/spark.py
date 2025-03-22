@@ -15,6 +15,7 @@ if __name__ == "__main__":
     query = 'DESCRIBE people'
     spark.sql(query).show(20)
     
+    df_people.write.mode("overwrite").json("results")
     # Query para mostrar todos los registros del dataset
     all_data = spark.sql("SELECT * FROM people")
     all_data.show(truncate=False)
@@ -30,10 +31,10 @@ if __name__ == "__main__":
          json.dump(summary, summary_file, indent=4)
     
 
-    random_number = random.randint(1000, 9999)
-    filename = {"ramdom": random_number}
-    with open("results/ramdom.json", 'w') as f:
-         json.dump(filename, f)
+#     random_number = random.randint(1000, 9999)
+#     filename = {"ramdom": random_number}
+#     with open("results/ramdom.json", 'w') as f:
+#          json.dump(filename, f)
 
     print("Archivo data.json y summary.json creados exitosamente.")
     spark.stop()
