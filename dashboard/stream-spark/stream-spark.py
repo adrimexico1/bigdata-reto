@@ -95,11 +95,18 @@ if st.button("Query mongodb collection"):
 
     for item in items:
         # Convertir la cadena JSON en un diccionario
-        item_data = json.loads(item["data"])
-        
-        # Mostrar en Streamlit
-        # st.write(f"{item_data['name']} : {item_data['birth']}")
-        st.write(f"{item_data['driverRef']} : {item_data['number']}")
+        try:
+            item_data = json.loads(item["data"])
+        except Exception as e:
+            st.write("Error al decodificar JSON:", e)
+            continue
+
+        # Solo mostramos si existen las claves 'driverRef' y 'number'
+        if "driverRef" in item_data and "number" in item_data:
+            st.write(f"{item_data['driverRef']} : {item_data['number']}")
+        else:
+            st.write("El registro no contiene 'driverRef' o 'number':", item_data)
+
 
 if st.button("Query Postgresql table"):
     # Perform query.
