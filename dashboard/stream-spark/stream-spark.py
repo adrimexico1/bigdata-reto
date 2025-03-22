@@ -92,7 +92,7 @@ if st.button("GET spark results"):
 
 if st.button("Query mongodb collection"):
     items = get_data()
-
+    
     for item in items:
         # Convertir la cadena JSON en un diccionario
         try:
@@ -100,12 +100,10 @@ if st.button("Query mongodb collection"):
         except Exception as e:
             st.write("Error al decodificar JSON:", e)
             continue
+        
+        # Mostrar el contenido completo del JSON
+        st.json(item_data)
 
-        # Solo mostramos si existen las claves 'driverRef' y 'number'
-        if "driverRef" in item_data and "number" in item_data:
-            st.write(f"{item_data['driverRef']} : {item_data['number']}")
-        else:
-            st.write("El registro no contiene 'driverRef' o 'number':", item_data)
 
 
 if st.button("Query Postgresql table"):
