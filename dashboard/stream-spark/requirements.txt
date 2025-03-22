@@ -5,7 +5,7 @@ matplotlib
 scikit-learn
 plotly
 requests
-pymongo==x.x.x
+pymongo
 json
 psycopg2-binary==x.x.x
 sqlalchemy==x.x.x
