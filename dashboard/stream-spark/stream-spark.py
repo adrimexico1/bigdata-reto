@@ -98,12 +98,12 @@ if st.button("Query mongodb collection"):
         item_data = json.loads(item["data"])
         
         # Mostrar en Streamlit
-        st.write(f"{item_data['name']} : {item_data['birth']}")
+        # st.write(f"{item_data['name']} : {item_data['birth']}")
         st.write(f"{item_data['driverRef']} : {item_data['number']}")
 
 if st.button("Query Postgresql table"):
     # Perform query.
-    df = conn.query('SELECT * FROM drivers;', ttl="10m")
+    df = conn.query('SELECT * FROM people;', ttl="10m")
     # Print results.
     for row in df.itertuples():
         st.write(row)
