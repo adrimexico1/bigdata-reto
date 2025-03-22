@@ -54,16 +54,10 @@ def get_spark_results(url_results):
     if  (response.status_code ==  200):
         st.write(response.json())
 
-st.header("spark-submit all results")
+st.header("spark-submit all or summary results")
 
 url_results=  st.text_input('URL results', value='https://raw.githubusercontent.com/adrimexico1/bigdata-reto/refs/heads/main/results/data.json')
 
 if st.button("GET spark results"):
     get_spark_results(url_results)
 
-st.header("spark-submit summry results")
-
-url_results_s=  st.text_input('URL results', value='https://raw.githubusercontent.com/adrimexico1/bigdata-reto/refs/heads/main/results/summary.json')
-
-if st.button("GET spark results"):
-    get_spark_results(url_results_s)
