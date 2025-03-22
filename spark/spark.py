@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # Generar summary.json con la sumatoria total de registros
     total_records = df_people.count()
     summary = {"total_records": total_records}
-    with open("summary.json", "w") as summary_file:
+    with open("results/summary.json", "w") as summary_file:
          json.dump(summary, summary_file, indent=4)
     
     print("Archivo data.json y summary.json creados exitosamente.")
