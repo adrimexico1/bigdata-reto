@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # Query para mostrar todos los registros del dataset
     all_data = spark.sql("SELECT * FROM people")
     all_data.show(truncate=False)
-    
+    all_data.write.mode("overwrite").json("results/all_data.json")
     # Convertir todos los registros a formato JSON y guardarlos en data.json
     results = all_data.toJSON().collect()
     with open('results/data.json', 'w') as f:
