@@ -1,11 +1,4 @@
-streamlit
-pandas
-numpy
-matplotlib
-scikit-learn
-plotly
-requests
+kafka-python
 pymongo
-json
-psycopg2-binary==x.x.x
-sqlalchemy==x.x.x
+psycopg2-binary
+sqlalchemy
