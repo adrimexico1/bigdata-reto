@@ -1,7 +1,21 @@
 import streamlit as st
 import requests
 import pandas  as pd
-# import json
+import json
+import pymongo
+# Initialize connection. Uses st.cache_resource to only run once.
+@st.cache_resource
+def init_connection():
+    return pymongo.MongoClient(**st.secrets["mongo"])
+client = init_connection()
+# Pull data from the collection. Uses st.cache_data to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def get_data():
+    db = client.people
+    items = db.people.find()
+    items = list(items)  # make hashable for st.cache_data
+    return items
+
 
 def post_spark_job(user, repo, job, token, codeurl, dataseturl):
     # Define the API endpoint
@@ -61,3 +75,22 @@ url_results=  st.text_input('URL results', value='https://raw.githubusercontent.
 if st.button("GET spark results"):
     get_spark_results(url_results)
 
+if st.button("Query mongodb collection"):
+    items = get_data()
+
+    for item in items:
+        # Convertir la cadena JSON en un diccionario
+        item_data = json.loads(item["data"])
+        
+        # Mostrar en Streamlit
+        st.write(f"{item_data['name']} : {item_data['birth']}")
+
+conn = st.connection("postgresql", type="sql")
+
+
+if st.button("Query Postgresql table"):
+    # Perform query.
+    df = conn.query('SELECT * FROM people;', ttl="10m")
+    # Print results.
+    for row in df.itertuples():
+        st.write(row)
