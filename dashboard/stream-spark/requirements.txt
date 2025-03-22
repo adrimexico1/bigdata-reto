@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+matplotlib
+scikit-learn
+plotly
+requests
+pymongo
+json
+psycopg2-binary==x.x.x
+sqlalchemy==x.x.x
