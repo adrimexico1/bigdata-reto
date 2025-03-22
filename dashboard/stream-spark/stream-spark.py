@@ -103,7 +103,7 @@ if st.button("Query mongodb collection"):
 
 if st.button("Query Postgresql table"):
     # Perform query.
-    df = conn.query('SELECT * FROM drivers;', ttl="10m")
+    df = conn.query('SELECT * FROM people;', ttl="10m")
     # Print results.
     for row in df.itertuples():
         st.write(row)
