@@ -18,7 +18,6 @@ if __name__ == "__main__":
     # Query para mostrar todos los registros del dataset
     all_data = spark.sql("SELECT * FROM people")
     all_data.show(truncate=False)
-    all_data.write.mode("overwrite").json("results/all_data.json")
     # Convertir todos los registros a formato JSON y guardarlos en data.json
     results = all_data.toJSON().collect()
     with open('results/data.json', 'w') as f:
@@ -30,5 +29,11 @@ if __name__ == "__main__":
     with open("results/summary.json", "w") as summary_file:
          json.dump(summary, summary_file, indent=4)
     
+
+    random_number = random.randint(1000, 9999)
+    filename = f"results/all_data_{random_number}.json"
+    with open(filename, 'w') as f:
+         json.dump(results, f)
+    logging.info("Archivo %s creado", filename)
     print("Archivo data.json y summary.json creados exitosamente.")
     spark.stop()
