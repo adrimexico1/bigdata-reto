@@ -104,6 +104,11 @@ if st.button("Query mongodb collection"):
 if st.button("Query Postgresql table"):
     # Perform query.
     df = conn.query('SELECT * FROM people;', ttl="10m")
-    # Print results.
+
+    # Renombrar la columna "birth" a "Count"
+    df.rename(columns={'birth': 'Count'}, inplace=True)
+
+    # Mostrar resultados
     for row in df.itertuples():
         st.write(row)
+
