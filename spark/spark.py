@@ -31,9 +31,9 @@ if __name__ == "__main__":
     
 
     random_number = random.randint(1000, 9999)
-    filename = f"results/all_data_{random_number}.json"
-    with open(filename, 'w') as f:
-         json.dump(results, f)
-    logging.info("Archivo %s creado", filename)
+    filename = {"ramdom": random_number}
+    with open("results/ramdom.json", 'w') as f:
+         json.dump(filename, f)
+
     print("Archivo data.json y summary.json creados exitosamente.")
     spark.stop()

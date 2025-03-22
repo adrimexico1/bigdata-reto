@@ -36,12 +36,12 @@ st.title("Spark & streamlit dashboard Drivers by. adrimexico1")
 
 st.header("spark-submit Job")
 
-github_user  =  st.text_input('Github user', value='username')
-github_repo  =  st.text_input('Github repo', value='repo')
+github_user  =  st.text_input('Github user', value='adrimexico1')
+github_repo  =  st.text_input('Github repo', value='bigdata-reto')
 spark_job    =  st.text_input('Spark job', value='spark')
 github_token =  st.text_input('Github token', value='***')
-code_url =  st.text_input('Code URL', value='')
-data_set =  st.text_input('Data Set', value='')
+code_url =  st.text_input('Code URL', value='https://raw.githubusercontent.com/adrimexico1/bigdata-reto/refs/heads/main/spark/spark.py')
+data_set =  st.text_input('Data Set', value='https://raw.githubusercontent.com/adrimexico1/drivers/refs/heads/main/drivers.csv')
 
 if st.button("POST spark submit"):
     post_spark_job(github_user, github_repo, spark_job, github_token, code_url, data_set)
